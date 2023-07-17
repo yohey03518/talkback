@@ -6,6 +6,9 @@
 ###   JAVA_HOME             # path to local copy of Java SDK. Should be Java 8.
 # On gLinux, use 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64'
 
+export ANDROID_NDK=''
+export ANDROID_SDK=''
+export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64'
 
 GRADLE_DOWNLOAD_VERSION=5.4.1
 GRADLE_TRACE=false   # change to true to enable verbose logging of gradlew

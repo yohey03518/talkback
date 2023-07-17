@@ -7,6 +7,8 @@ see
 
 ### How to Build
 
+NDK r20b https://github.com/android/ndk/wiki/Unsupported-Downloads
+
 To build TalkBack, run ./build.sh, which will produce an apk file.
 
 ### How to Install
