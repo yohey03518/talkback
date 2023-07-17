@@ -574,24 +574,44 @@ public class TalkBackService extends AccessibilityService
     }
   }
 
+  private String exploreNodeInfo(AccessibilityNodeInfo nodeInfo) {
+    String content = "";
+    if (nodeInfo.getText() != null && !nodeInfo.getText().toString().isEmpty()) {
+      content += "," + nodeInfo.getText().toString();
+    }
+    for (int i = 0; i < nodeInfo.getChildCount(); i++) {
+      AccessibilityNodeInfo childNode = nodeInfo.getChild(i);
+      if (childNode != null) {
+        content += "," + exploreNodeInfo(childNode);
+      }
+    }
+    return content;
+  }
+
   @Override
   public void onAccessibilityEvent(AccessibilityEvent event) {
-    Performance perf = Performance.getInstance();
-    EventId eventId = perf.onEventReceived(event);
-    accessibilityEventProcessor.onAccessibilityEvent(event, eventId);
-    perf.onHandlerDone(eventId);
+    LogUtils.d("erwin", "come in");
+    LogUtils.d("erwin", "pkg name: " + event.getPackageName());
+    AccessibilityNodeInfo rootInActiveWindow = getRootInActiveWindow();
+    String result = exploreNodeInfo(rootInActiveWindow);
+    LogUtils.d("erwin", result);
 
-    if (brailleDisplay != null) {
-      brailleDisplay.onAccessibilityEvent(event);
-    }
-
-    // Re-apply diagnosis-mode logging, in case other accessibility-services changed the shared
-    // log-level preference.
-    enforceDiagnosisModeLogging();
-
-    if (diagnosticOverlayController != null) {
-      diagnosticOverlayController.displayEvent(event);
-    }
+//    Performance perf = Performance.getInstance();
+//    EventId eventId = perf.onEventReceived(event);
+//    accessibilityEventProcessor.onAccessibilityEvent(event, eventId);
+//    perf.onHandlerDone(eventId);
+//
+//    if (brailleDisplay != null) {
+//      brailleDisplay.onAccessibilityEvent(event);
+//    }
+//
+//    // Re-apply diagnosis-mode logging, in case other accessibility-services changed the shared
+//    // log-level preference.
+//    enforceDiagnosisModeLogging();
+//
+//    if (diagnosticOverlayController != null) {
+//      diagnosticOverlayController.displayEvent(event);
+//    }
   }
 
   public boolean supportsTouchScreen() {
