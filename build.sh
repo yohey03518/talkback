@@ -7,7 +7,7 @@
 # On gLinux, use 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64'
 
 export ANDROID_SDK='/home/erwin/Android/Sdk'
-export ANDROID_NDK='/home//erwin/Android/Sdk/ndk/android-ndk-r20b'
+export ANDROID_NDK='/home/erwin/Android/Sdk/ndk/android-ndk-r20b'
 export JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64'
 
 GRADLE_DOWNLOAD_VERSION=5.4.1
